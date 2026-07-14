@@ -1,0 +1,1 @@
+{"version":3,"file":"newsletter.model.d.ts","sourceRoot":"","sources":["../../src/models/newsletter.model.ts"],"names":[],"mappings":"AAAA,OAAiB,EAAE,QAAQ,EAAU,KAAK,EAAE,MAAM,UAAU,CAAC;AAE7D,MAAM,WAAW,WAAY,SAAQ,QAAQ;IAC3C,KAAK,EAAE,MAAM,CAAC;IACd,QAAQ,EAAE,OAAO,CAAC;IAClB,YAAY,EAAE,IAAI,CAAC;IACnB,cAAc,CAAC,EAAE,IAAI,CAAC;CACvB;AAeD,eAAO,MAAM,UAAU,EAAE,KAAK,CAAC,WAAW,CAA+D,CAAC"}

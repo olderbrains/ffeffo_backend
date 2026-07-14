@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_middleware_1 = require("../../middleware/auth.middleware");
+const rbac_middleware_1 = require("../../middleware/rbac.middleware");
+const validation_middleware_1 = require("../../middleware/validation.middleware");
+const products_controller_1 = require("./products.controller");
+const products_dto_1 = require("./products.dto");
+const router = (0, express_1.Router)();
+const controller = new products_controller_1.ProductsController();
+router.get('/', (0, validation_middleware_1.validate)({ query: products_dto_1.listProductsQueryDto }), controller.listProducts);
+router.get('/:idOrSlug', (0, validation_middleware_1.validate)({ params: products_dto_1.productIdOrSlugParamDto }), controller.getProduct);
+router.post('/', auth_middleware_1.authenticate, rbac_middleware_1.authorizeAdmin, (0, validation_middleware_1.validate)({ body: products_dto_1.createProductDto }), controller.createProduct);
+router.patch('/:id', auth_middleware_1.authenticate, rbac_middleware_1.authorizeAdmin, (0, validation_middleware_1.validate)({ params: products_dto_1.productIdParamDto, body: products_dto_1.updateProductDto }), controller.updateProduct);
+router.delete('/:id', auth_middleware_1.authenticate, rbac_middleware_1.authorizeAdmin, (0, validation_middleware_1.validate)({ params: products_dto_1.productIdParamDto }), controller.deleteProduct);
+router.get('/:id/variants', (0, validation_middleware_1.validate)({ params: products_dto_1.productIdParamDto }), controller.listVariants);
+router.post('/:id/variants', auth_middleware_1.authenticate, rbac_middleware_1.authorizeAdmin, (0, validation_middleware_1.validate)({ params: products_dto_1.productIdParamDto, body: products_dto_1.createVariantDto }), controller.createVariant);
+router.patch('/:id/variants/:variantId', auth_middleware_1.authenticate, rbac_middleware_1.authorizeAdmin, (0, validation_middleware_1.validate)({ params: products_dto_1.variantIdParamDto, body: products_dto_1.updateVariantDto }), controller.updateVariant);
+router.delete('/:id/variants/:variantId', auth_middleware_1.authenticate, rbac_middleware_1.authorizeAdmin, (0, validation_middleware_1.validate)({ params: products_dto_1.variantIdParamDto }), controller.deleteVariant);
+exports.default = router;
+//# sourceMappingURL=products.routes.js.map
